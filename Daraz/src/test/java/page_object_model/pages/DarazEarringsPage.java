@@ -3,6 +3,7 @@ package page_object_model.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import page_object_model.utilities.LoggerUtil;
 
 public class DarazEarringsPage extends BasePage {
 
@@ -26,42 +27,84 @@ public class DarazEarringsPage extends BasePage {
         super(driver);
     }
 
-    public void selectCheckBoxBodhi(){
+
+public void selectCheckBoxBodhi(){
+    try {
         checkBoxBodhi.click();
+        LoggerUtil.logInfo("Clicked on Bodhi checkbox.");
+    } catch (Exception e) {
+        LoggerUtil.logError("Failed to click on Bodhi checkbox.", e);
+
     }
+}
 
     public void selectCheckBoxLocalSellerWarranty() {
-        checkBoxLocalSellerWarranty.click();
+        try {
+            checkBoxLocalSellerWarranty.click();
+            LoggerUtil.logInfo("Clicked on Local Seller Warranty checkbox.");
+        } catch (Exception e) {
+            LoggerUtil.logError("Failed to click on Local Seller Warranty checkbox.", e);
+        }
     }
 
     public void setMaxValue(String maxValue){
-         textBoxMaxValue.sendKeys(maxValue);
+        try {
+            textBoxMaxValue.sendKeys(maxValue);
+            LoggerUtil.logInfo("Set maximum value: " + maxValue);
+        } catch (Exception e) {
+            LoggerUtil.logError("Failed to set maximum value: " + maxValue, e);
+        }
     }
 
     public void setMinValue(String minValue){
-        textBoxMinValue.sendKeys(minValue);
+        try {
+            textBoxMinValue.sendKeys(minValue);
+            LoggerUtil.logInfo("Set minimum value: " + minValue);
+        } catch (Exception e) {
+            LoggerUtil.logError("Failed to set minimum value: " + minValue, e);
+        }
     }
 
     public void selectCheckBoxShippedFromWestern(){
-        shippedFromWesternCheckBox.click();
+        try {
+            shippedFromWesternCheckBox.click();
+            LoggerUtil.logInfo("Clicked on Shipped from Western checkbox.");
+        } catch (Exception e) {
+            LoggerUtil.logError("Failed to click on Shipped from Western checkbox.", e);
+        }
     }
 
     public boolean isCheckboxSelectedVoucherMax() {
-        return shippedFromWesternCheckBox.isSelected();
+        try {
+            boolean isSelected = shippedFromWesternCheckBox.isSelected();
+            LoggerUtil.logInfo("Shipped from Western checkbox selected status: " + isSelected);
+            return isSelected;
+        } catch (Exception e) {
+            LoggerUtil.logError("Failed to get Shipped from Western checkbox selected status.", e);
+            return false;
+        }
     }
+
     public boolean isCheckboxSelectedBodhi() {
-        return checkBoxBodhi.isSelected();
+        try {
+            boolean isSelected = checkBoxBodhi.isSelected();
+            LoggerUtil.logInfo("Bodhi checkbox selected status: " + isSelected);
+            return isSelected;
+        } catch (Exception e) {
+            LoggerUtil.logError("Failed to get Bodhi checkbox selected status.", e);
+            return false;
+        }
     }
 
     public boolean isCheckboxSelectedLocalSellerWarranty() {
-        return  checkBoxLocalSellerWarranty.isSelected();
+        try {
+            boolean isSelected = checkBoxLocalSellerWarranty.isSelected();
+            LoggerUtil.logInfo("Local Seller Warranty checkbox selected status: " + isSelected);
+            return isSelected;
+        } catch (Exception e) {
+            LoggerUtil.logError("Failed to get Local Seller Warranty checkbox selected status.", e);
+            return false;
+        }
     }
 
-    public String getMinValue() {
-        return textBoxMinValue.getAttribute("value");
-    }
-
-    public String getMaxValue() {
-        return textBoxMaxValue.getAttribute("value");
-    }
 }
